@@ -36,7 +36,7 @@ const int AIR_VALUE = 3200;
 const int WATER_VALUE = 1400;
 const int DRY_THRESHOLD_PERCENT = 30;
 const unsigned long PUBLISH_INTERVAL_MS = 60000;
-const uint8_t BME280_I2C_ADDR = 0x76;
+const uint8_t BME280_I2C_ADDR = 0x77;
 
 int soilMoisturePercent = 0;
 double temperatureCelsius = 0.0;
