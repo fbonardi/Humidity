@@ -1,0 +1,510 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		228D9370FD3B49775ECBF4E7 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6365552CEADE701F302C84E9 /* ContentView.swift */; };
+		2F74FC9F0874A71EEF11BEFE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A79E77A98ECF98FA9E7A25 /* Security.framework */; };
+		3D1C3CA4DA7A70D81C2F4F19 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 232965EE16037BE6857DA222 /* SystemConfiguration.framework */; };
+		562000CBB2358F45EFF513F1 /* ParticleEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = C23DAE035E59AABBB96508BC /* ParticleEvent.m */; };
+		68DE9E9AE42CE60C9357AFD4 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 057473720F80E4BAA2986172 /* MobileCoreServices.framework */; };
+		6902733742C58689E02F3A1F /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = EB7F411BAF0006EA6A00DB4B /* AFURLRequestSerialization.m */; };
+		6DD0B073F2D026313A80ADD4 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4865D370E185640B6B30B111 /* AFHTTPSessionManager.m */; };
+		799DCACDB0A5B354775A0AF6 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C7F408A4309E7F69FB2A0C7 /* AFSecurityPolicy.m */; };
+		820E102ADD26DEBEA0A3C1E8 /* ParticleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0157176E42388E447E85F9 /* ParticleManager.swift */; };
+		9AB7CD87FE2A815267D70168 /* ParticleSession.m in Sources */ = {isa = PBXBuildFile; fileRef = A3F5B8A5A8D7955DE8965DE2 /* ParticleSession.m */; };
+		9C4F0B61E7FA83DD43D667AA /* ParticleCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = E8463FA00BA5B5FC150E9825 /* ParticleCloud.m */; };
+		A6AA46698E001A34F91952F0 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1DC2C4883F5A64B23C6F72D0 /* AFURLSessionManager.m */; };
+		A87A12AC7A4F5F74EA557F92 /* EventSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 374C454194082FD3F051C175 /* EventSource.m */; };
+		AE3686D741C8839D2475C6E2 /* HumidityApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA5F985C2D23EFD2BD3A8E30 /* HumidityApp.swift */; };
+		B1EDB92FF02F5B4914777FB7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E1954D6782B2A4503179EBF /* Foundation.framework */; };
+		B69ADD4B06F6C3B808EC2A0C /* ParticleDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = F71ECA53C50AB0ABD41A05B2 /* ParticleDevice.m */; };
+		C677DFE7A7857F57C065D2DF /* ParticleErrorHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 753CF182633524404389230D /* ParticleErrorHelper.m */; };
+		DBEE003D9B60763315F9CC41 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C478C1E30959897CE330683B /* AFNetworkReachabilityManager.m */; };
+		E41222FEE7398FEB8A36C5FA /* KeychainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6098B25F543A201BE1DF1163 /* KeychainHelper.m */; };
+		F7EA29BDB4CDD7FA4057DEEC /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4EF2AFAFFCEE546EEBEAF133 /* AFURLResponseSerialization.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		057473720F80E4BAA2986172 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = "<group>"; };
+		14A79E77A98ECF98FA9E7A25 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = "<group>"; };
+		1DC2C4883F5A64B23C6F72D0 /* AFURLSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		232965EE16037BE6857DA222 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = "<group>"; };
+		374C454194082FD3F051C175 /* EventSource.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = EventSource.m; sourceTree = "<group>"; };
+		3AE5B293B42E103221BC5F7B /* ParticleCloud.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ParticleCloud.h; sourceTree = "<group>"; };
+		3E1954D6782B2A4503179EBF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		3F316057CD6CCA7B2570E2CB /* ParticleErrorHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ParticleErrorHelper.h; sourceTree = "<group>"; };
+		4865D370E185640B6B30B111 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		48F574B2DCF6DE9027A0CFF7 /* ParticleEvent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ParticleEvent.h; sourceTree = "<group>"; };
+		4DE7B70A39C56830AE56F2D7 /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		4EF2AFAFFCEE546EEBEAF133 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		5B7C9FBD2CE4E8668E9F97C5 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		606B96E1E9D47313264697B8 /* Particle-Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Particle-Bridging-Header.h"; sourceTree = "<group>"; };
+		6098B25F543A201BE1DF1163 /* KeychainHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = KeychainHelper.m; sourceTree = "<group>"; };
+		61A76486FA15603A3FA29756 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		6365552CEADE701F302C84E9 /* ContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		753CF182633524404389230D /* ParticleErrorHelper.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ParticleErrorHelper.m; sourceTree = "<group>"; };
+		7C24739F349EF88CF93D8F96 /* ParticleDevice.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ParticleDevice.h; sourceTree = "<group>"; };
+		7C7F408A4309E7F69FB2A0C7 /* AFSecurityPolicy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		7C9B07171E75DED52A8D7180 /* KeychainHelper.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = KeychainHelper.h; sourceTree = "<group>"; };
+		7F52A16AE5733B28F3196284 /* ParticleSession.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = ParticleSession.h; sourceTree = "<group>"; };
+		828C8234098CA4948F674AF6 /* Particle-SDK.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Particle-SDK.h"; sourceTree = "<group>"; };
+		8424D85BECCC8AC4DBFB9A55 /* AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		8AF3A5A736275389D55640C2 /* AFURLSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		917DDD9DB3C7198276D0FBF3 /* EventSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = EventSource.h; sourceTree = "<group>"; };
+		9B468B778581C7C4132A00F2 /* AFSecurityPolicy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		9FFD036A38ECB7A1909DC955 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		A3F5B8A5A8D7955DE8965DE2 /* ParticleSession.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ParticleSession.m; sourceTree = "<group>"; };
+		C23DAE035E59AABBB96508BC /* ParticleEvent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ParticleEvent.m; sourceTree = "<group>"; };
+		C478C1E30959897CE330683B /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		CB0F6D147A9AD8DFC8CD575F /* Humidity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Humidity.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DA5F985C2D23EFD2BD3A8E30 /* HumidityApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HumidityApp.swift; sourceTree = "<group>"; };
+		E8463FA00BA5B5FC150E9825 /* ParticleCloud.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ParticleCloud.m; sourceTree = "<group>"; };
+		EB7F411BAF0006EA6A00DB4B /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		EC0157176E42388E447E85F9 /* ParticleManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ParticleManager.swift; sourceTree = "<group>"; };
+		F71ECA53C50AB0ABD41A05B2 /* ParticleDevice.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = ParticleDevice.m; sourceTree = "<group>"; };
+		FA59B77DD2335E5CE14323D1 /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		FACDAFB4767118BB5A8CAC74 /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B6002C8820AABE9D3693918B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1EDB92FF02F5B4914777FB7 /* Foundation.framework in Frameworks */,
+				2F74FC9F0874A71EEF11BEFE /* Security.framework in Frameworks */,
+				3D1C3CA4DA7A70D81C2F4F19 /* SystemConfiguration.framework in Frameworks */,
+				68DE9E9AE42CE60C9357AFD4 /* MobileCoreServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		06B8FDDD288AD18476D59614 = {
+			isa = PBXGroup;
+			children = (
+				B1790CA3087587F0AD3A7A36 /* Products */,
+				1ED85FB7BF13E1AA6556CE65 /* Frameworks */,
+				858866EBDF0C95F8C60F9822 /* Humidity */,
+				3EDC5CFA61D10550880333A6 /* Vendor */,
+			);
+			sourceTree = "<group>";
+		};
+		07159A33559B642644649FDB /* SDK */ = {
+			isa = PBXGroup;
+			children = (
+				3AE5B293B42E103221BC5F7B /* ParticleCloud.h */,
+				E8463FA00BA5B5FC150E9825 /* ParticleCloud.m */,
+				7C24739F349EF88CF93D8F96 /* ParticleDevice.h */,
+				F71ECA53C50AB0ABD41A05B2 /* ParticleDevice.m */,
+				48F574B2DCF6DE9027A0CFF7 /* ParticleEvent.h */,
+				C23DAE035E59AABBB96508BC /* ParticleEvent.m */,
+				7F52A16AE5733B28F3196284 /* ParticleSession.h */,
+				A3F5B8A5A8D7955DE8965DE2 /* ParticleSession.m */,
+			);
+			path = SDK;
+			sourceTree = "<group>";
+		};
+		0C1703495CDB9940662DC074 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				61A76486FA15603A3FA29756 /* AFHTTPSessionManager.h */,
+				4865D370E185640B6B30B111 /* AFHTTPSessionManager.m */,
+				4DE7B70A39C56830AE56F2D7 /* AFNetworkReachabilityManager.h */,
+				C478C1E30959897CE330683B /* AFNetworkReachabilityManager.m */,
+				8424D85BECCC8AC4DBFB9A55 /* AFNetworking.h */,
+				9B468B778581C7C4132A00F2 /* AFSecurityPolicy.h */,
+				7C7F408A4309E7F69FB2A0C7 /* AFSecurityPolicy.m */,
+				FACDAFB4767118BB5A8CAC74 /* AFURLRequestSerialization.h */,
+				EB7F411BAF0006EA6A00DB4B /* AFURLRequestSerialization.m */,
+				FA59B77DD2335E5CE14323D1 /* AFURLResponseSerialization.h */,
+				4EF2AFAFFCEE546EEBEAF133 /* AFURLResponseSerialization.m */,
+				8AF3A5A736275389D55640C2 /* AFURLSessionManager.h */,
+				1DC2C4883F5A64B23C6F72D0 /* AFURLSessionManager.m */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		17529C250C4DF0B4AADABB3F /* ParticleSDK */ = {
+			isa = PBXGroup;
+			children = (
+				828C8234098CA4948F674AF6 /* Particle-SDK.h */,
+				9FFD036A38ECB7A1909DC955 /* LICENSE */,
+				1852F649F581B750D6C80A95 /* Helpers */,
+				07159A33559B642644649FDB /* SDK */,
+			);
+			path = ParticleSDK;
+			sourceTree = "<group>";
+		};
+		1852F649F581B750D6C80A95 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				917DDD9DB3C7198276D0FBF3 /* EventSource.h */,
+				374C454194082FD3F051C175 /* EventSource.m */,
+				7C9B07171E75DED52A8D7180 /* KeychainHelper.h */,
+				6098B25F543A201BE1DF1163 /* KeychainHelper.m */,
+				3F316057CD6CCA7B2570E2CB /* ParticleErrorHelper.h */,
+				753CF182633524404389230D /* ParticleErrorHelper.m */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		1ED85FB7BF13E1AA6556CE65 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A023FA54B0F52748EB875566 /* iOS */,
+				14A79E77A98ECF98FA9E7A25 /* Security.framework */,
+				232965EE16037BE6857DA222 /* SystemConfiguration.framework */,
+				057473720F80E4BAA2986172 /* MobileCoreServices.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3EDC5CFA61D10550880333A6 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				17529C250C4DF0B4AADABB3F /* ParticleSDK */,
+				C36118B999941D748BBCA6A0 /* AFNetworking */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		858866EBDF0C95F8C60F9822 /* Humidity */ = {
+			isa = PBXGroup;
+			children = (
+				DA5F985C2D23EFD2BD3A8E30 /* HumidityApp.swift */,
+				6365552CEADE701F302C84E9 /* ContentView.swift */,
+				EC0157176E42388E447E85F9 /* ParticleManager.swift */,
+				606B96E1E9D47313264697B8 /* Particle-Bridging-Header.h */,
+			);
+			path = Humidity;
+			sourceTree = "<group>";
+		};
+		A023FA54B0F52748EB875566 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3E1954D6782B2A4503179EBF /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		B1790CA3087587F0AD3A7A36 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB0F6D147A9AD8DFC8CD575F /* Humidity.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C36118B999941D748BBCA6A0 /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				5B7C9FBD2CE4E8668E9F97C5 /* LICENSE */,
+				0C1703495CDB9940662DC074 /* AFNetworking */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FC7E01F07E7344E78F99C16F /* Humidity */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 48B9FEE1D6CDAE6D26807C68 /* Build configuration list for PBXNativeTarget "Humidity" */;
+			buildPhases = (
+				30C31AFE8BC60DC85ECDA950 /* Sources */,
+				B6002C8820AABE9D3693918B /* Frameworks */,
+				E6E60F668C22F78F361F1A55 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Humidity;
+			productName = Humidity;
+			productReference = CB0F6D147A9AD8DFC8CD575F /* Humidity.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4C305C5B45EE689B0874EDFA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					FC7E01F07E7344E78F99C16F = {
+						DevelopmentTeam = 2ZVU68Q3Q7;
+					};
+				};
+			};
+			buildConfigurationList = 2B13ADBEB1B8A181DDD867FF /* Build configuration list for PBXProject "Humidity" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 06B8FDDD288AD18476D59614;
+			productRefGroup = B1790CA3087587F0AD3A7A36 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FC7E01F07E7344E78F99C16F /* Humidity */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E6E60F668C22F78F361F1A55 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		30C31AFE8BC60DC85ECDA950 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AE3686D741C8839D2475C6E2 /* HumidityApp.swift in Sources */,
+				228D9370FD3B49775ECBF4E7 /* ContentView.swift in Sources */,
+				820E102ADD26DEBEA0A3C1E8 /* ParticleManager.swift in Sources */,
+				A87A12AC7A4F5F74EA557F92 /* EventSource.m in Sources */,
+				E41222FEE7398FEB8A36C5FA /* KeychainHelper.m in Sources */,
+				C677DFE7A7857F57C065D2DF /* ParticleErrorHelper.m in Sources */,
+				9C4F0B61E7FA83DD43D667AA /* ParticleCloud.m in Sources */,
+				B69ADD4B06F6C3B808EC2A0C /* ParticleDevice.m in Sources */,
+				562000CBB2358F45EFF513F1 /* ParticleEvent.m in Sources */,
+				9AB7CD87FE2A815267D70168 /* ParticleSession.m in Sources */,
+				6DD0B073F2D026313A80ADD4 /* AFHTTPSessionManager.m in Sources */,
+				DBEE003D9B60763315F9CC41 /* AFNetworkReachabilityManager.m in Sources */,
+				799DCACDB0A5B354775A0AF6 /* AFSecurityPolicy.m in Sources */,
+				6902733742C58689E02F3A1F /* AFURLRequestSerialization.m in Sources */,
+				F7EA29BDB4CDD7FA4057DEEC /* AFURLResponseSerialization.m in Sources */,
+				A6AA46698E001A34F91952F0 /* AFURLSessionManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		B04B5B6DD63926B8CD190DA2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		BD9F64AAD9CA8518146BA999 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E99A35FFA5D58756B53CABEF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ZVU68Q3Q7;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Vendor/AFNetworking/AFNetworking",
+					"$(SRCROOT)/Vendor/ParticleSDK",
+					"$(SRCROOT)/Vendor/ParticleSDK/SDK",
+					"$(SRCROOT)/Vendor/ParticleSDK/Helpers",
+				);
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cino.Humidity;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Humidity/Particle-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F47240D5C8D2CACAACEE917A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
+				CLANG_ENABLE_MODULES = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 2ZVU68Q3Q7;
+				GENERATE_INFOPLIST_FILE = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/Vendor/AFNetworking/AFNetworking",
+					"$(SRCROOT)/Vendor/ParticleSDK",
+					"$(SRCROOT)/Vendor/ParticleSDK/SDK",
+					"$(SRCROOT)/Vendor/ParticleSDK/Helpers",
+				);
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cino.Humidity;
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Humidity/Particle-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2B13ADBEB1B8A181DDD867FF /* Build configuration list for PBXProject "Humidity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BD9F64AAD9CA8518146BA999 /* Debug */,
+				B04B5B6DD63926B8CD190DA2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		48B9FEE1D6CDAE6D26807C68 /* Build configuration list for PBXNativeTarget "Humidity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E99A35FFA5D58756B53CABEF /* Release */,
+				F47240D5C8D2CACAACEE917A /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4C305C5B45EE689B0874EDFA /* Project object */;
+}
