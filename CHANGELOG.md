@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Particle Cloud variables: `temperature` (double, °C), `humidity` (double, %), `pressure` (double, hPa)
 - `env/data` cloud event publishing temperature, humidity, and pressure as JSON every 60 s
 - Graceful fallback: OLED shows "BME280 not found" if sensor is absent or mis-wired
+- BME280 I2C address set to 0x77 (Adafruit breakout default — SDO pulled high)
 - Redesigned OLED layout to show soil moisture bar, temperature, humidity, and status label
 - iOS app displays temperature and humidity alongside soil moisture
 
