@@ -10,11 +10,12 @@ final class ParticleManager: ObservableObject {
     @Published var deviceName: String?
     @Published var deviceConnected = false
     @Published var soilMoisturePercent: Int?
+    @Published var temperatureCelsius: Double?
+    @Published var humidityPercent: Double?
     @Published var lastUpdated: Date?
 
     private var device: ParticleDevice?
     private var refreshTimer: AnyCancellable?
-    private let soilMoistureVariableName = "soilMoisture"
     private let refreshInterval: TimeInterval = 30
 
     init() {
@@ -47,12 +48,14 @@ final class ParticleManager: ObservableObject {
         device = nil
         isAuthenticated = false
         soilMoisturePercent = nil
+        temperatureCelsius = nil
+        humidityPercent = nil
         deviceName = nil
         lastUpdated = nil
     }
 
     func refreshNow() {
-        readSoilMoisture()
+        readAllVariables()
     }
 
     private func fetchDevice() {
@@ -65,14 +68,14 @@ final class ParticleManager: ObservableObject {
                     self.errorMessage = error.localizedDescription
                     return
                 }
-                guard let device = devices?.first(where: { $0.variables.keys.contains(self.soilMoistureVariableName) }) ?? devices?.first else {
+                guard let device = devices?.first(where: { $0.variables.keys.contains("soilMoisture") }) ?? devices?.first else {
                     self.errorMessage = "No claimed devices found."
                     return
                 }
                 self.device = device
                 self.deviceName = device.name
                 self.deviceConnected = device.connected
-                self.readSoilMoisture()
+                self.readAllVariables()
                 self.startPolling()
             }
         }
@@ -82,7 +85,7 @@ final class ParticleManager: ObservableObject {
         refreshTimer = Timer.publish(every: refreshInterval, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
-                self?.readSoilMoisture()
+                self?.readAllVariables()
             }
     }
 
@@ -91,20 +94,40 @@ final class ParticleManager: ObservableObject {
         refreshTimer = nil
     }
 
-    private func readSoilMoisture() {
+    private func readAllVariables() {
         guard let device else { return }
-        device.getVariable(soilMoistureVariableName) { [weak self] value, error in
+
+        device.getVariable("soilMoisture") { [weak self] value, error in
             Task { @MainActor in
                 guard let self else { return }
                 self.deviceConnected = device.connected
-                if let error {
-                    self.errorMessage = error.localizedDescription
-                    return
+                if error == nil {
+                    self.soilMoisturePercent = (value as? NSNumber)?.intValue
+                    self.lastUpdated = Date()
                 }
-                self.errorMessage = nil
-                self.soilMoisturePercent = (value as? NSNumber)?.intValue
-                self.lastUpdated = Date()
             }
+        }
+
+        device.getVariable("temperature") { [weak self] value, error in
+            Task { @MainActor in
+                guard let self else { return }
+                if error == nil {
+                    self.temperatureCelsius = (value as? NSNumber)?.doubleValue
+                }
+            }
+        }
+
+        device.getVariable("humidity") { [weak self] value, error in
+            Task { @MainActor in
+                guard let self else { return }
+                if error == nil {
+                    self.humidityPercent = (value as? NSNumber)?.doubleValue
+                }
+            }
+        }
+
+        if errorMessage != nil {
+            errorMessage = nil
         }
     }
 }

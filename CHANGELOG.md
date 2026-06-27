@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [Unreleased]
+
+### Added
+- BME280 temperature, humidity, and pressure sensor support (I2C, shared bus with OLED)
+- Particle Cloud variables: `temperature` (double, °C), `humidity` (double, %), `pressure` (double, hPa)
+- `env/data` cloud event publishing temperature, humidity, and pressure as JSON every 60 s
+- Graceful fallback: OLED shows "BME280 not found" if sensor is absent or mis-wired
+- Redesigned OLED layout to show soil moisture bar, temperature, humidity, and status label
+- iOS app displays temperature and humidity alongside soil moisture
+
 ## [1.0.0] - 2026-06-27
 
 ### Added

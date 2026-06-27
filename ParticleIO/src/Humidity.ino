@@ -1,8 +1,9 @@
 /*
  * Project Humidity
- * Description: Reads a capacitive soil moisture probe, reports the
- *              current soil moisture level to the Particle cloud, and
- *              shows it on an Adafruit SSD1306 OLED display.
+ * Description: Reads a capacitive soil moisture probe and a BME280
+ *              temperature/humidity sensor, reports all values to the
+ *              Particle Cloud, and shows them on an Adafruit SSD1306
+ *              OLED display.
  * Author: Cino
  * Date: 2026-06-27
  */
@@ -10,12 +11,16 @@
 /*
  Wiring:
    Photon   Sensor / Display
-   3V3      Sensor VCC, Display VCC
-   GND      Sensor GND, Display GND
-   A1       Sensor AOUT
-   D0 (SDA) Display SDA  (I2C)
-   D1 (SCL) Display SCL  (I2C)
+   3V3      Soil sensor VCC, Display VCC, BME280 VIN
+   GND      Soil sensor GND, Display GND, BME280 GND
+   A1       Soil sensor AOUT
+   D0 (SDA) Display SDA, BME280 SDI  (I2C)
+   D1 (SCL) Display SCL, BME280 SCK  (I2C)
    D4       Display RESET
+
+ BME280 I2C address:
+   0x76 when SDO is tied to GND (most breakout boards)
+   0x77 when SDO is tied to VCC — change BME280_I2C_ADDR below
 
  Calibrate AIR_VALUE and WATER_VALUE for your specific probe:
   - AIR_VALUE:   analogRead() with the probe completely dry, out of the soil
@@ -24,49 +29,69 @@
 
 #include <Adafruit_SSD1306.h>
 #include "Adafruit_GFX.h"
+#include <Adafruit_BME280.h>
 
 const int SOIL_PIN = A1;
 const int AIR_VALUE = 3200;
 const int WATER_VALUE = 1400;
 const int DRY_THRESHOLD_PERCENT = 30;
 const unsigned long PUBLISH_INTERVAL_MS = 60000;
+const uint8_t BME280_I2C_ADDR = 0x76;
 
 int soilMoisturePercent = 0;
+double temperatureCelsius = 0.0;
+double humidityPercent = 0.0;
+double pressureHPa = 0.0;
 unsigned long lastPublish = 0;
+bool bmeOk = false;
 
 Adafruit_SSD1306 display(4); // reset pin D4
+Adafruit_BME280 bme;
 
 void updateDisplay()
 {
     display.clearDisplay();
     display.setTextColor(WHITE);
 
-    // Large percentage value
-    display.setTextSize(3);
+    // Moisture percentage
+    display.setTextSize(2);
     display.setCursor(0, 0);
-    char buf[8];
-    snprintf(buf, sizeof(buf), "%3d%%", soilMoisturePercent);
-    display.println(buf);
+    char moistBuf[8];
+    snprintf(moistBuf, sizeof(moistBuf), "%3d%%", soilMoisturePercent);
+    display.print(moistBuf);
 
     // Moisture bar
     int barWidth = (soilMoisturePercent * 128) / 100;
-    display.fillRect(0, 32, barWidth, 10, WHITE);
-    display.drawRect(0, 32, 128, 10, WHITE);
+    display.fillRect(0, 20, barWidth, 6, WHITE);
+    display.drawRect(0, 20, 128, 6, WHITE);
 
-    // Status label
+    // Temperature + humidity (or error if BME280 not found)
     display.setTextSize(1);
-    display.setCursor(0, 48);
-    if (soilMoisturePercent < DRY_THRESHOLD_PERCENT)
+    display.setCursor(0, 30);
+    if (bmeOk)
     {
-        display.println("DRY - water me!");
-    }
-    else if (soilMoisturePercent >= 70)
-    {
-        display.println("Soil is wet");
+        char envBuf[24];
+        snprintf(envBuf, sizeof(envBuf), "%.1fC  %.0f%%RH", temperatureCelsius, humidityPercent);
+        display.print(envBuf);
     }
     else
     {
-        display.println("Moisture OK");
+        display.print("BME280 not found");
+    }
+
+    // Status label
+    display.setCursor(0, 42);
+    if (soilMoisturePercent < DRY_THRESHOLD_PERCENT)
+    {
+        display.print("DRY - water me!");
+    }
+    else if (soilMoisturePercent >= 70)
+    {
+        display.print("Soil is wet");
+    }
+    else
+    {
+        display.print("Moisture OK");
     }
 
     display.display();
@@ -86,8 +111,17 @@ void setup()
     display.println("Starting...");
     display.display();
 
+    bmeOk = bme.begin(BME280_I2C_ADDR);
+    if (!bmeOk)
+    {
+        Serial.println("BME280 not found — check wiring and I2C address");
+    }
+
     pinMode(SOIL_PIN, INPUT);
     Particle.variable("soilMoisture", soilMoisturePercent);
+    Particle.variable("temperature", temperatureCelsius);
+    Particle.variable("humidity", humidityPercent);
+    Particle.variable("pressure", pressureHPa);
 }
 
 void loop()
@@ -95,18 +129,35 @@ void loop()
     int raw = analogRead(SOIL_PIN);
     soilMoisturePercent = constrain(map(raw, AIR_VALUE, WATER_VALUE, 0, 100), 0, 100);
 
-    Serial.printlnf("Soil moisture: raw=%d, percent=%d%%", raw, soilMoisturePercent);
+    if (bmeOk)
+    {
+        temperatureCelsius = bme.readTemperature();
+        humidityPercent = bme.readHumidity();
+        pressureHPa = bme.readPressure() / 100.0;
+    }
+
+    Serial.printlnf("Soil: raw=%d %d%%  Temp: %.1fC  Hum: %.0f%%  Pres: %.1fhPa",
+                    raw, soilMoisturePercent, temperatureCelsius, humidityPercent, pressureHPa);
 
     updateDisplay();
 
     if (millis() - lastPublish >= PUBLISH_INTERVAL_MS)
     {
         lastPublish = millis();
+
         Particle.publish("soil/moisture", String(soilMoisturePercent), PRIVATE);
 
         if (soilMoisturePercent < DRY_THRESHOLD_PERCENT)
         {
             Particle.publish("soil/dry", String(soilMoisturePercent), PRIVATE);
+        }
+
+        if (bmeOk)
+        {
+            char envJson[64];
+            snprintf(envJson, sizeof(envJson), "{\"temp\":%.1f,\"hum\":%.1f,\"pres\":%.1f}",
+                     temperatureCelsius, humidityPercent, pressureHPa);
+            Particle.publish("env/data", envJson, PRIVATE);
         }
     }
 
