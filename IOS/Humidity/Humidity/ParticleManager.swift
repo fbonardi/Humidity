@@ -12,6 +12,7 @@ final class ParticleManager: ObservableObject {
     @Published var soilMoisturePercent: Int?
     @Published var temperatureCelsius: Double?
     @Published var humidityPercent: Double?
+    @Published var pressureHPa: Double?
     @Published var lastUpdated: Date?
 
     private var device: ParticleDevice?
@@ -50,6 +51,7 @@ final class ParticleManager: ObservableObject {
         soilMoisturePercent = nil
         temperatureCelsius = nil
         humidityPercent = nil
+        pressureHPa = nil
         deviceName = nil
         lastUpdated = nil
     }
@@ -97,37 +99,51 @@ final class ParticleManager: ObservableObject {
     private func readAllVariables() {
         guard let device else { return }
 
+        // fixes #1/#2/#3/#7/#8: surface errors, guard against post-logOut writes,
+        // update deviceConnected and lastUpdated in every callback
         device.getVariable("soilMoisture") { [weak self] value, error in
             Task { @MainActor in
-                guard let self else { return }
+                guard let self, self.isAuthenticated else { return }
                 self.deviceConnected = device.connected
-                if error == nil {
+                if let error {
+                    self.errorMessage = error.localizedDescription
+                } else {
                     self.soilMoisturePercent = (value as? NSNumber)?.intValue
                     self.lastUpdated = Date()
+                    self.errorMessage = nil
                 }
             }
         }
 
         device.getVariable("temperature") { [weak self] value, error in
             Task { @MainActor in
-                guard let self else { return }
+                guard let self, self.isAuthenticated else { return }
+                self.deviceConnected = device.connected
                 if error == nil {
                     self.temperatureCelsius = (value as? NSNumber)?.doubleValue
+                    self.lastUpdated = Date()
                 }
             }
         }
 
         device.getVariable("humidity") { [weak self] value, error in
             Task { @MainActor in
-                guard let self else { return }
+                guard let self, self.isAuthenticated else { return }
+                self.deviceConnected = device.connected
                 if error == nil {
                     self.humidityPercent = (value as? NSNumber)?.doubleValue
+                    self.lastUpdated = Date()
                 }
             }
         }
 
-        if errorMessage != nil {
-            errorMessage = nil
+        device.getVariable("pressure") { [weak self] value, error in
+            Task { @MainActor in
+                guard let self, self.isAuthenticated else { return }
+                if error == nil {
+                    self.pressureHPa = (value as? NSNumber)?.doubleValue
+                }
+            }
         }
     }
 }

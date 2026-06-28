@@ -14,7 +14,18 @@ All notable changes to this project will be documented in this file.
 - Calibrated soil probe: AIR_VALUE=2645, WATER_VALUE=1215
 - Raw ADC display kept as commented-out code for future recalibration
 - Redesigned OLED layout to show soil moisture bar, temperature, humidity, and status label
-- iOS app displays temperature and humidity alongside soil moisture
+- iOS app displays temperature, humidity, and pressure alongside soil moisture
+
+### Fixed
+- iOS: `getVariable` errors were silently discarded; device-offline now surfaces an error message
+- iOS: `errorMessage` was cleared before callbacks completed, hiding persistent failures
+- iOS: in-flight callbacks could write stale sensor values back after the user logged out
+- iOS: `lastUpdated` and `deviceConnected` now updated by all variable callbacks, not just soil moisture
+- iOS: pressure variable added to iOS app (`pressureHPa` property + `getVariable` + UI display)
+- Firmware: BME280 retries initialisation every 30 s if it was absent at boot (slow power-up)
+- Firmware: removed redundant `soil/dry` event to stay within the 1-event/s Particle rate limit
+- Firmware: calibration display block moved to y=54 so it no longer conflicts with the status label at y=42
+- Firmware: documented why `Wire.setSpeed(50000)` is intentionally conservative
 
 ## [1.0.0] - 2026-06-27
 

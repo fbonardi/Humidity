@@ -1,7 +1,7 @@
 /*
  * Project Humidity
  * Description: Reads a capacitive soil moisture probe and a BME280
- *              temperature/humidity sensor, reports all values to the
+ *              temperature/humidity/pressure sensor, reports all values to the
  *              Particle Cloud, and shows them on an Adafruit SSD1306
  *              OLED display.
  * Author: Cino
@@ -22,6 +22,11 @@
    0x76 when SDO is tied to GND (most breakout boards)
    0x77 when SDO is tied to VCC — change BME280_I2C_ADDR below
 
+ I2C runs at 50 kHz (Wire.setSpeed). Both the SSD1306 and BME280 support
+ higher speeds, but this conservative rate was chosen to accommodate the
+ wiring length and pull-up values on this board. Do not increase without
+ testing for I2C reliability.
+
  Calibrate AIR_VALUE and WATER_VALUE for your specific probe:
   - AIR_VALUE:   analogRead() with the probe completely dry, out of the soil
   - WATER_VALUE: analogRead() with the probe fully submerged in water
@@ -36,6 +41,7 @@ const int AIR_VALUE = 2645;
 const int WATER_VALUE = 1215;
 const int DRY_THRESHOLD_PERCENT = 30;
 const unsigned long PUBLISH_INTERVAL_MS = 60000;
+const unsigned long BME_RETRY_INTERVAL_MS = 30000;
 const uint8_t BME280_I2C_ADDR = 0x77;
 
 int soilMoisturePercent = 0;
@@ -43,6 +49,7 @@ double temperatureCelsius = 0.0;
 double humidityPercent = 0.0;
 double pressureHPa = 0.0;
 unsigned long lastPublish = 0;
+unsigned long lastBmeRetry = 0;
 bool bmeOk = false;
 
 Adafruit_SSD1306 display(4); // reset pin D4
@@ -79,12 +86,6 @@ void updateDisplay(int rawValue) // pass raw to re-enable calibration display ab
         display.print("BME280 not found");
     }
 
-    // Uncomment to show raw ADC value for probe calibration:
-    // display.setCursor(0, 42);
-    // char rawBuf[16];
-    // snprintf(rawBuf, sizeof(rawBuf), "raw: %d", rawValue);
-    // display.print(rawBuf);
-
     // Status label
     display.setCursor(0, 42);
     if (soilMoisturePercent < DRY_THRESHOLD_PERCENT)
@@ -100,12 +101,18 @@ void updateDisplay(int rawValue) // pass raw to re-enable calibration display ab
         display.print("Moisture OK");
     }
 
+    // Uncomment to show raw ADC value for probe calibration (y=54, below status):
+    // display.setCursor(0, 54);
+    // char rawBuf[16];
+    // snprintf(rawBuf, sizeof(rawBuf), "raw: %d", rawValue);
+    // display.print(rawBuf);
+
     display.display();
 }
 
 void setup()
 {
-    Wire.setSpeed(50000);
+    Wire.setSpeed(50000); // conservative — see wiring note above before changing
     Serial.begin(9600);
 
     display.begin(SSD1306_SWITCHCAPVCC, 0x3D);
@@ -120,7 +127,7 @@ void setup()
     bmeOk = bme.begin(BME280_I2C_ADDR);
     if (!bmeOk)
     {
-        Serial.println("BME280 not found — check wiring and I2C address");
+        Serial.println("BME280 not found — will retry every 30 s");
     }
 
     pinMode(SOIL_PIN, INPUT);
@@ -134,6 +141,17 @@ void loop()
 {
     int raw = analogRead(SOIL_PIN);
     soilMoisturePercent = constrain(map(raw, AIR_VALUE, WATER_VALUE, 0, 100), 0, 100);
+
+    // Retry BME280 init if it was missing at boot (e.g. slow power-up)
+    if (!bmeOk && millis() - lastBmeRetry >= BME_RETRY_INTERVAL_MS)
+    {
+        lastBmeRetry = millis();
+        bmeOk = bme.begin(BME280_I2C_ADDR);
+        if (bmeOk)
+        {
+            Serial.println("BME280 initialized on retry");
+        }
+    }
 
     if (bmeOk)
     {
@@ -151,12 +169,10 @@ void loop()
     {
         lastPublish = millis();
 
+        // Publish soil moisture. soil/dry was removed — it duplicated this value
+        // and Device OS rate-limits to 1 event/s, so keeping two per interval
+        // (soil/moisture + env/data) is the safe maximum.
         Particle.publish("soil/moisture", String(soilMoisturePercent), PRIVATE);
-
-        if (soilMoisturePercent < DRY_THRESHOLD_PERCENT)
-        {
-            Particle.publish("soil/dry", String(soilMoisturePercent), PRIVATE);
-        }
 
         if (bmeOk)
         {

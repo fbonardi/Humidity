@@ -99,6 +99,12 @@ private struct DeviceStatusView: View {
                 }
             }
 
+            if let pres = particle.pressureHPa {
+                Text(String(format: "%.0f hPa", pres))
+                    .font(.caption.monospacedDigit())
+                    .foregroundColor(.secondary)
+            }
+
             if let lastUpdated = particle.lastUpdated {
                 Text("Updated \(lastUpdated.formatted(date: .omitted, time: .standard))")
                     .font(.caption2)
