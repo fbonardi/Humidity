@@ -78,12 +78,21 @@ private struct DeviceStatusView: View {
                 ProgressView("Reading soil moisture…")
             }
 
-            HStack(spacing: 32) {
+            HStack(spacing: 24) {
+                if let soilTemp = particle.soilTempCelsius {
+                    VStack(spacing: 2) {
+                        Text(String(format: "%.1f°C", soilTemp))
+                            .font(.title2.monospacedDigit())
+                        Text("Soil Temp")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                }
                 if let temp = particle.temperatureCelsius {
                     VStack(spacing: 2) {
                         Text(String(format: "%.1f°C", temp))
                             .font(.title2.monospacedDigit())
-                        Text("Temperature")
+                        Text("Air Temp")
                             .font(.caption)
                             .foregroundColor(.secondary)
                     }

@@ -10,6 +10,7 @@ final class ParticleManager: ObservableObject {
     @Published var deviceName: String?
     @Published var deviceConnected = false
     @Published var soilMoisturePercent: Int?
+    @Published var soilTempCelsius: Double?
     @Published var temperatureCelsius: Double?
     @Published var humidityPercent: Double?
     @Published var pressureHPa: Double?
@@ -49,6 +50,7 @@ final class ParticleManager: ObservableObject {
         device = nil
         isAuthenticated = false
         soilMoisturePercent = nil
+        soilTempCelsius = nil
         temperatureCelsius = nil
         humidityPercent = nil
         pressureHPa = nil
@@ -111,6 +113,17 @@ final class ParticleManager: ObservableObject {
                     self.soilMoisturePercent = (value as? NSNumber)?.intValue
                     self.lastUpdated = Date()
                     self.errorMessage = nil
+                }
+            }
+        }
+
+        device.getVariable("soilTemp") { [weak self] value, error in
+            Task { @MainActor in
+                guard let self, self.isAuthenticated else { return }
+                self.deviceConnected = device.connected
+                if error == nil {
+                    self.soilTempCelsius = (value as? NSNumber)?.doubleValue
+                    self.lastUpdated = Date()
                 }
             }
         }

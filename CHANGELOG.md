@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- DS18B20 soil temperature sensor on A0 (1-Wire); exposed as `soilTemp` cloud variable
+- OLED updated: shows soil temp and air temp/humidity on separate lines, status at bottom
+- iOS app shows Soil Temp, Air Temp, and Humidity side by side
+- `env/data` event now includes `soilTemp` field
 - App icon: water drop over soil on a green background
 - BME280 temperature, humidity, and pressure sensor support (I2C, shared bus with OLED)
 - Particle Cloud variables: `temperature` (double, °C), `humidity` (double, %), `pressure` (double, hPa)
