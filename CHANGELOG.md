@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
+- App icon: water drop over soil on a green background
 - BME280 temperature, humidity, and pressure sensor support (I2C, shared bus with OLED)
 - Particle Cloud variables: `temperature` (double, °C), `humidity` (double, %), `pressure` (double, hPa)
 - `env/data` cloud event publishing temperature, humidity, and pressure as JSON every 60 s
