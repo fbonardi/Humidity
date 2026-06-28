@@ -32,8 +32,8 @@
 #include <Adafruit_BME280.h>
 
 const int SOIL_PIN = A1;
-const int AIR_VALUE = 3200;
-const int WATER_VALUE = 1400;
+const int AIR_VALUE = 2645;
+const int WATER_VALUE = 1215;
 const int DRY_THRESHOLD_PERCENT = 30;
 const unsigned long PUBLISH_INTERVAL_MS = 60000;
 const uint8_t BME280_I2C_ADDR = 0x77;
@@ -48,7 +48,7 @@ bool bmeOk = false;
 Adafruit_SSD1306 display(4); // reset pin D4
 Adafruit_BME280 bme;
 
-void updateDisplay()
+void updateDisplay(int rawValue) // pass raw to re-enable calibration display above
 {
     display.clearDisplay();
     display.setTextColor(WHITE);
@@ -78,6 +78,12 @@ void updateDisplay()
     {
         display.print("BME280 not found");
     }
+
+    // Uncomment to show raw ADC value for probe calibration:
+    // display.setCursor(0, 42);
+    // char rawBuf[16];
+    // snprintf(rawBuf, sizeof(rawBuf), "raw: %d", rawValue);
+    // display.print(rawBuf);
 
     // Status label
     display.setCursor(0, 42);
@@ -139,7 +145,7 @@ void loop()
     Serial.printlnf("Soil: raw=%d %d%%  Temp: %.1fC  Hum: %.0f%%  Pres: %.1fhPa",
                     raw, soilMoisturePercent, temperatureCelsius, humidityPercent, pressureHPa);
 
-    updateDisplay();
+    updateDisplay(raw);
 
     if (millis() - lastPublish >= PUBLISH_INTERVAL_MS)
     {
